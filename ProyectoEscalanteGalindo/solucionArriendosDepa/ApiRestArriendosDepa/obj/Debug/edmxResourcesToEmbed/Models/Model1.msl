@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBArrendatarioModelStoreContainer" CdmEntityContainer="DBArrendatarioEntities">
+    <EntitySetMapping Name="Apartamentos">
+      <EntityTypeMapping TypeName="DBArrendatarioModel.Apartamentos">
+        <MappingFragment StoreEntitySet="Apartamentos">
+          <ScalarProperty Name="Id_apartamento" ColumnName="Id_apartamento" />
+          <ScalarProperty Name="Nombre_apart" ColumnName="Nombre_apart" />
+          <ScalarProperty Name="Precio_apart" ColumnName="Precio_apart" />
+          <ScalarProperty Name="Id_usuario_per" ColumnName="Id_usuario_per" />
+          <ScalarProperty Name="Longitud" ColumnName="Longitud" />
+          <ScalarProperty Name="Latitud" ColumnName="Latitud" />
+          <ScalarProperty Name="Estado_apart" ColumnName="Estado_apart" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Caracteristicas">
+      <EntityTypeMapping TypeName="DBArrendatarioModel.Caracteristicas">
+        <MappingFragment StoreEntitySet="Caracteristicas">
+          <ScalarProperty Name="Id_caracteristicas" ColumnName="Id_caracteristicas" />
+          <ScalarProperty Name="Id_apartamento_per" ColumnName="Id_apartamento_per" />
+          <ScalarProperty Name="N_habitaciones" ColumnName="N_habitaciones" />
+          <ScalarProperty Name="ApartamentoCompartido" ColumnName="ApartamentoCompartido" />
+          <ScalarProperty Name="Cocina" ColumnName="Cocina" />
+          <ScalarProperty Name="Bano_Independiente" ColumnName="Bano_Independiente" />
+          <ScalarProperty Name="Bano_Compartido" ColumnName="Bano_Compartido" />
+          <ScalarProperty Name="Ducha" ColumnName="Ducha" />
+          <ScalarProperty Name="Amoblado" ColumnName="Amoblado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Condiciones">
+      <EntityTypeMapping TypeName="DBArrendatarioModel.Condiciones">
+        <MappingFragment StoreEntitySet="Condiciones">
+          <ScalarProperty Name="Id_condicion" ColumnName="Id_condicion" />
+          <ScalarProperty Name="Id_apartamento_per" ColumnName="Id_apartamento_per" />
+          <ScalarProperty Name="Permite_Mascotas" ColumnName="Permite_Mascotas" />
+          <ScalarProperty Name="Permite_Fiestas" ColumnName="Permite_Fiestas" />
+          <ScalarProperty Name="Permite_MusicaAltoVolumen" ColumnName="Permite_MusicaAltoVolumen" />
+          <ScalarProperty Name="Permite_Tomar" ColumnName="Permite_Tomar" />
+          <ScalarProperty Name="Permite_Fumar" ColumnName="Permite_Fumar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Imagenes">
+      <EntityTypeMapping TypeName="DBArrendatarioModel.Imagenes">
+        <MappingFragment StoreEntitySet="Imagenes">
+          <ScalarProperty Name="id_foto" ColumnName="id_foto" />
+          <ScalarProperty Name="id_apartamentos_per" ColumnName="id_apartamentos_per" />
+          <ScalarProperty Name="foto1" ColumnName="foto1" />
+          <ScalarProperty Name="foto2" ColumnName="foto2" />
+          <ScalarProperty Name="foto3" ColumnName="foto3" />
+          <ScalarProperty Name="foto4" ColumnName="foto4" />
+          <ScalarProperty Name="foto5" ColumnName="foto5" />
+          <ScalarProperty Name="foto6" ColumnName="foto6" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Servicios">
+      <EntityTypeMapping TypeName="DBArrendatarioModel.Servicios">
+        <MappingFragment StoreEntitySet="Servicios">
+          <ScalarProperty Name="Id_servicio" ColumnName="Id_servicio" />
+          <ScalarProperty Name="Id_apartamento_per" ColumnName="Id_apartamento_per" />
+          <ScalarProperty Name="Luz" ColumnName="Luz" />
+          <ScalarProperty Name="Agua" ColumnName="Agua" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Garage" ColumnName="Garage" />
+          <ScalarProperty Name="Gas" ColumnName="Gas" />
+          <ScalarProperty Name="Desayuno" ColumnName="Desayuno" />
+          <ScalarProperty Name="Almuerzo" ColumnName="Almuerzo" />
+          <ScalarProperty Name="Merienda" ColumnName="Merienda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="DBArrendatarioModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="Id_usuario" ColumnName="Id_usuario" />
+          <ScalarProperty Name="Nombre_usuario" ColumnName="Nombre_usuario" />
+          <ScalarProperty Name="Contrasena_usuario" ColumnName="Contrasena_usuario" />
+          <ScalarProperty Name="Correo_usuario" ColumnName="Correo_usuario" />
+          <ScalarProperty Name="telefono_usuario" ColumnName="telefono_usuario" />
+          <ScalarProperty Name="Arrendatario" ColumnName="Arrendatario" />
+          <ScalarProperty Name="Foto_Usuario" ColumnName="Foto_Usuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

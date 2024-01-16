@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d7b70671c2f42b7ac3e396243506881" Name="Diagram1">
+        <EntityTypeShape EntityType="DBArrendatarioModel.Apartamentos" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBArrendatarioModel.Caracteristicas" Width="1.5" PointX="1.375" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBArrendatarioModel.Condiciones" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBArrendatarioModel.Imagenes" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBArrendatarioModel.Servicios" Width="1.5" PointX="2" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBArrendatarioModel.Usuarios" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="DBArrendatarioModel.FK_Apartamentos_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="DBArrendatarioModel.FK_Caracteristicas_Apartamentos" ManuallyRouted="false" />
+        <AssociationConnector Association="DBArrendatarioModel.FK_Condiciones_Apartamentos" ManuallyRouted="false" />
+        <AssociationConnector Association="DBArrendatarioModel.FK_Imagenes_Apartamentos" ManuallyRouted="false" />
+        <AssociationConnector Association="DBArrendatarioModel.FK_Servicios_Apartamentos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

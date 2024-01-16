@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBArrendatarioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Apartamentos">
+    <Key>
+      <PropertyRef Name="Id_apartamento" />
+    </Key>
+    <Property Name="Id_apartamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_apart" Type="nvarchar" MaxLength="40" />
+    <Property Name="Precio_apart" Type="money" />
+    <Property Name="Id_usuario_per" Type="int" />
+    <Property Name="Longitud" Type="varchar" MaxLength="25" />
+    <Property Name="Latitud" Type="varchar" MaxLength="25" />
+    <Property Name="Estado_apart" Type="bit" />
+  </EntityType>
+  <EntityType Name="Caracteristicas">
+    <Key>
+      <PropertyRef Name="Id_caracteristicas" />
+    </Key>
+    <Property Name="Id_caracteristicas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_apartamento_per" Type="int" />
+    <Property Name="N_habitaciones" Type="smallint" />
+    <Property Name="ApartamentoCompartido" Type="bit" />
+    <Property Name="Cocina" Type="bit" />
+    <Property Name="Bano_Independiente" Type="bit" />
+    <Property Name="Bano_Compartido" Type="bit" />
+    <Property Name="Ducha" Type="bit" />
+    <Property Name="Amoblado" Type="bit" />
+  </EntityType>
+  <EntityType Name="Condiciones">
+    <Key>
+      <PropertyRef Name="Id_condicion" />
+    </Key>
+    <Property Name="Id_condicion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_apartamento_per" Type="int" />
+    <Property Name="Permite_Mascotas" Type="bit" />
+    <Property Name="Permite_Fiestas" Type="bit" />
+    <Property Name="Permite_MusicaAltoVolumen" Type="bit" />
+    <Property Name="Permite_Tomar" Type="bit" />
+    <Property Name="Permite_Fumar" Type="bit" />
+  </EntityType>
+  <EntityType Name="Imagenes">
+    <Key>
+      <PropertyRef Name="id_foto" />
+    </Key>
+    <Property Name="id_foto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_apartamentos_per" Type="int" />
+    <Property Name="foto1" Type="varbinary(max)" />
+    <Property Name="foto2" Type="varbinary(max)" />
+    <Property Name="foto3" Type="varbinary(max)" />
+    <Property Name="foto4" Type="varbinary(max)" />
+    <Property Name="foto5" Type="varbinary(max)" />
+    <Property Name="foto6" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Servicios">
+    <Key>
+      <PropertyRef Name="Id_servicio" />
+    </Key>
+    <Property Name="Id_servicio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_apartamento_per" Type="int" Nullable="false" />
+    <Property Name="Luz" Type="bit" />
+    <Property Name="Agua" Type="bit" />
+    <Property Name="Telefono" Type="bit" />
+    <Property Name="Garage" Type="bit" />
+    <Property Name="Gas" Type="bit" />
+    <Property Name="Desayuno" Type="bit" />
+    <Property Name="Almuerzo" Type="bit" />
+    <Property Name="Merienda" Type="bit" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+    </Key>
+    <Property Name="Id_usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre_usuario" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contrasena_usuario" Type="nvarchar" MaxLength="50" />
+    <Property Name="Correo_usuario" Type="nvarchar" MaxLength="50" />
+    <Property Name="telefono_usuario" Type="nvarchar" MaxLength="15" />
+    <Property Name="Arrendatario" Type="bit" />
+    <Property Name="Foto_Usuario" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Apartamentos_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Apartamentos" Type="Self.Apartamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuario" />
+      </Principal>
+      <Dependent Role="Apartamentos">
+        <PropertyRef Name="Id_usuario_per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Caracteristicas_Apartamentos">
+    <End Role="Apartamentos" Type="Self.Apartamentos" Multiplicity="0..1" />
+    <End Role="Caracteristicas" Type="Self.Caracteristicas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartamentos">
+        <PropertyRef Name="Id_apartamento" />
+      </Principal>
+      <Dependent Role="Caracteristicas">
+        <PropertyRef Name="Id_apartamento_per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Condiciones_Apartamentos">
+    <End Role="Apartamentos" Type="Self.Apartamentos" Multiplicity="0..1" />
+    <End Role="Condiciones" Type="Self.Condiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartamentos">
+        <PropertyRef Name="Id_apartamento" />
+      </Principal>
+      <Dependent Role="Condiciones">
+        <PropertyRef Name="Id_apartamento_per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Imagenes_Apartamentos">
+    <End Role="Apartamentos" Type="Self.Apartamentos" Multiplicity="0..1" />
+    <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartamentos">
+        <PropertyRef Name="Id_apartamento" />
+      </Principal>
+      <Dependent Role="Imagenes">
+        <PropertyRef Name="id_apartamentos_per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Servicios_Apartamentos">
+    <End Role="Apartamentos" Type="Self.Apartamentos" Multiplicity="1" />
+    <End Role="Servicios" Type="Self.Servicios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartamentos">
+        <PropertyRef Name="Id_apartamento" />
+      </Principal>
+      <Dependent Role="Servicios">
+        <PropertyRef Name="Id_apartamento_per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBArrendatarioModelStoreContainer">
+    <EntitySet Name="Apartamentos" EntityType="Self.Apartamentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Caracteristicas" EntityType="Self.Caracteristicas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Condiciones" EntityType="Self.Condiciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Imagenes" EntityType="Self.Imagenes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Servicios" EntityType="Self.Servicios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Apartamentos_Usuarios" Association="Self.FK_Apartamentos_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Apartamentos" EntitySet="Apartamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Caracteristicas_Apartamentos" Association="Self.FK_Caracteristicas_Apartamentos">
+      <End Role="Apartamentos" EntitySet="Apartamentos" />
+      <End Role="Caracteristicas" EntitySet="Caracteristicas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Condiciones_Apartamentos" Association="Self.FK_Condiciones_Apartamentos">
+      <End Role="Apartamentos" EntitySet="Apartamentos" />
+      <End Role="Condiciones" EntitySet="Condiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Imagenes_Apartamentos" Association="Self.FK_Imagenes_Apartamentos">
+      <End Role="Apartamentos" EntitySet="Apartamentos" />
+      <End Role="Imagenes" EntitySet="Imagenes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Servicios_Apartamentos" Association="Self.FK_Servicios_Apartamentos">
+      <End Role="Apartamentos" EntitySet="Apartamentos" />
+      <End Role="Servicios" EntitySet="Servicios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,18 @@
+body{
+    background-color: black;
+}
+
+h1{
+    text-align: center;
+    color: white;
+}
+
+div{
+    width: 900px;
+    height: 900px;
+    margin: 0 auto;
+}
+canvas{
+    background-color: rgb(239, 239, 239);
+    margin-top: 40px;
+}

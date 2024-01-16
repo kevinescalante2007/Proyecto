@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBArrendatarioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Apartamentos">
+    <Key>
+      <PropertyRef Name="Id_apartamento" />
+    </Key>
+    <Property Name="Id_apartamento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_apart" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Precio_apart" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Id_usuario_per" Type="Int32" />
+    <Property Name="Longitud" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Latitud" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Estado_apart" Type="Boolean" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK_Apartamentos_Usuarios" FromRole="Apartamentos" ToRole="Usuarios" />
+    <NavigationProperty Name="Caracteristicas" Relationship="Self.FK_Caracteristicas_Apartamentos" FromRole="Apartamentos" ToRole="Caracteristicas" />
+    <NavigationProperty Name="Condiciones" Relationship="Self.FK_Condiciones_Apartamentos" FromRole="Apartamentos" ToRole="Condiciones" />
+    <NavigationProperty Name="Imagenes" Relationship="Self.FK_Imagenes_Apartamentos" FromRole="Apartamentos" ToRole="Imagenes" />
+    <NavigationProperty Name="Servicios" Relationship="Self.FK_Servicios_Apartamentos" FromRole="Apartamentos" ToRole="Servicios" />
+  </EntityType>
+  <EntityType Name="Caracteristicas">
+    <Key>
+      <PropertyRef Name="Id_caracteristicas" />
+    </Key>
+    <Property Name="Id_caracteristicas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_apartamento_per" Type="Int32" />
+    <Property Name="N_habitaciones" Type="Int16" />
+    <Property Name="ApartamentoCompartido" Type="Boolean" />
+    <Property Name="Cocina" Type="Boolean" />
+    <Property Name="Bano_Independiente" Type="Boolean" />
+    <Property Name="Bano_Compartido" Type="Boolean" />
+    <Property Name="Ducha" Type="Boolean" />
+    <Property Name="Amoblado" Type="Boolean" />
+    <NavigationProperty Name="Apartamentos" Relationship="Self.FK_Caracteristicas_Apartamentos" FromRole="Caracteristicas" ToRole="Apartamentos" />
+  </EntityType>
+  <EntityType Name="Condiciones">
+    <Key>
+      <PropertyRef Name="Id_condicion" />
+    </Key>
+    <Property Name="Id_condicion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_apartamento_per" Type="Int32" />
+    <Property Name="Permite_Mascotas" Type="Boolean" />
+    <Property Name="Permite_Fiestas" Type="Boolean" />
+    <Property Name="Permite_MusicaAltoVolumen" Type="Boolean" />
+    <Property Name="Permite_Tomar" Type="Boolean" />
+    <Property Name="Permite_Fumar" Type="Boolean" />
+    <NavigationProperty Name="Apartamentos" Relationship="Self.FK_Condiciones_Apartamentos" FromRole="Condiciones" ToRole="Apartamentos" />
+  </EntityType>
+  <EntityType Name="Imagenes">
+    <Key>
+      <PropertyRef Name="id_foto" />
+    </Key>
+    <Property Name="id_foto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_apartamentos_per" Type="Int32" />
+    <Property Name="foto1" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="foto2" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="foto3" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="foto4" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="foto5" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="foto6" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Apartamentos" Relationship="Self.FK_Imagenes_Apartamentos" FromRole="Imagenes" ToRole="Apartamentos" />
+  </EntityType>
+  <EntityType Name="Servicios">
+    <Key>
+      <PropertyRef Name="Id_servicio" />
+    </Key>
+    <Property Name="Id_servicio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_apartamento_per" Type="Int32" Nullable="false" />
+    <Property Name="Luz" Type="Boolean" />
+    <Property Name="Agua" Type="Boolean" />
+    <Property Name="Telefono" Type="Boolean" />
+    <Property Name="Garage" Type="Boolean" />
+    <Property Name="Gas" Type="Boolean" />
+    <Property Name="Desayuno" Type="Boolean" />
+    <Property Name="Almuerzo" Type="Boolean" />
+    <Property Name="Merienda" Type="Boolean" />
+    <NavigationProperty Name="Apartamentos" Relationship="Self.FK_Servicios_Apartamentos" FromRole="Servicios" ToRole="Apartamentos" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="Id_usuario" />
+    </Key>
+    <Property Name="Id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Contrasena_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Correo_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telefono_usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Arrendatario" Type="Boolean" />
+    <Property Name="Foto_Usuario" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Apartamentos" Relationship="Self.FK_Apartamentos_Usuarios" FromRole="Usuarios" ToRole="Apartamentos" />
+  </EntityType>
+  <Association Name="FK_Apartamentos_Usuarios">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Apartamentos" Type="Self.Apartamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="Id_usuario" />
+      </Principal>
+      <Dependent Role="Apartamentos">
+        <PropertyRef Name="Id_usuario_per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Caracteristicas_Apartamentos">
+    <End Role="Apartamentos" Type="Self.Apartamentos" Multiplicity="0..1" />
+    <End Role="Caracteristicas" Type="Self.Caracteristicas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartamentos">
+        <PropertyRef Name="Id_apartamento" />
+      </Principal>
+      <Dependent Role="Caracteristicas">
+        <PropertyRef Name="Id_apartamento_per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Condiciones_Apartamentos">
+    <End Role="Apartamentos" Type="Self.Apartamentos" Multiplicity="0..1" />
+    <End Role="Condiciones" Type="Self.Condiciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartamentos">
+        <PropertyRef Name="Id_apartamento" />
+      </Principal>
+      <Dependent Role="Condiciones">
+        <PropertyRef Name="Id_apartamento_per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Imagenes_Apartamentos">
+    <End Role="Apartamentos" Type="Self.Apartamentos" Multiplicity="0..1" />
+    <End Role="Imagenes" Type="Self.Imagenes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartamentos">
+        <PropertyRef Name="Id_apartamento" />
+      </Principal>
+      <Dependent Role="Imagenes">
+        <PropertyRef Name="id_apartamentos_per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Servicios_Apartamentos">
+    <End Role="Apartamentos" Type="Self.Apartamentos" Multiplicity="1" />
+    <End Role="Servicios" Type="Self.Servicios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Apartamentos">
+        <PropertyRef Name="Id_apartamento" />
+      </Principal>
+      <Dependent Role="Servicios">
+        <PropertyRef Name="Id_apartamento_per" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBArrendatarioEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Apartamentos" EntityType="Self.Apartamentos" />
+    <EntitySet Name="Caracteristicas" EntityType="Self.Caracteristicas" />
+    <EntitySet Name="Condiciones" EntityType="Self.Condiciones" />
+    <EntitySet Name="Imagenes" EntityType="Self.Imagenes" />
+    <EntitySet Name="Servicios" EntityType="Self.Servicios" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <AssociationSet Name="FK_Apartamentos_Usuarios" Association="Self.FK_Apartamentos_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Apartamentos" EntitySet="Apartamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Caracteristicas_Apartamentos" Association="Self.FK_Caracteristicas_Apartamentos">
+      <End Role="Apartamentos" EntitySet="Apartamentos" />
+      <End Role="Caracteristicas" EntitySet="Caracteristicas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Condiciones_Apartamentos" Association="Self.FK_Condiciones_Apartamentos">
+      <End Role="Apartamentos" EntitySet="Apartamentos" />
+      <End Role="Condiciones" EntitySet="Condiciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Imagenes_Apartamentos" Association="Self.FK_Imagenes_Apartamentos">
+      <End Role="Apartamentos" EntitySet="Apartamentos" />
+      <End Role="Imagenes" EntitySet="Imagenes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Servicios_Apartamentos" Association="Self.FK_Servicios_Apartamentos">
+      <End Role="Apartamentos" EntitySet="Apartamentos" />
+      <End Role="Servicios" EntitySet="Servicios" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
